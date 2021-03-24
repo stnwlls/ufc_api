@@ -1,0 +1,16 @@
+{
+  "name": "ufc_api",
+  "version": "1.0.0",
+  "description": "API to get fighter info from UFC website",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Patrick Repaci",
+  "license": "MIT"
+}

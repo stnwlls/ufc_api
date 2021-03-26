@@ -47,19 +47,20 @@ module.exports.getFighter = function (url, callback) {
                 },
                 fights: []
             };
-            // Name
-            // $('#fighter-details h1').filter(function () {
-            // $('.field-name-nickname').filter(function () {
-            //     var el = $(this);
-            //     console.log(el, 'ellll')
-            //     name = el.text();
-            //     fighter.name = name;
-            //     console.log('mmmmmmmmmmmmmm', name)
-            // });
+            // NAME
+            $('h1').filter(function () {
+                let el = $(this);
+                let em = el.text();
+                let name = em.trim();
+                fighter.name = name;
+
+            });
+
+            // Nickname
             $('.field-name-nickname').filter(function () {
                 let el = $(this);
-                let nickname = el.text();
-                console.log(nickname)
+                let em = el.text();
+                let nickname = em.trim();
                 fighter.nickname = nickname;
 
             });

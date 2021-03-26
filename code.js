@@ -3,9 +3,9 @@ let cheerio = require("cheerio");
 const fetch = require('node-fetch');
 
 
-fetch('https://www.ufc.com/fighter/sean-omalley')
-    //.then(response => response.json())
-    .then(data => console.log(data));
+// fetch('https://www.ufc.com/athlete/sean-omalley')
+//     //.then(response => response.json())
+//     .then(data => console.log(data));
 
 
 module.exports.getFighter = function (url, callback) {
@@ -14,7 +14,8 @@ module.exports.getFighter = function (url, callback) {
         if (!error && response.statusCode == 200) {
             //console.log('ufl', url)
             let $ = cheerio.load(html);
-            console.log('dollar', $)
+            //console.log('dollar', $)
+            console.log('yes sir')
             let fighter = {
                 name: "",
                 nickname: "",
@@ -48,12 +49,21 @@ module.exports.getFighter = function (url, callback) {
             };
             // Name
             // $('#fighter-details h1').filter(function () {
-            $('<div class="c-hero--full__headline is-large-text"></div>').children(function () {
-                var el = $(this);
-                name = el.text();
-                fighter.name = name;
-                console.log('mmmmmmmmmmmmmm', name)
+            // $('.field-name-nickname').filter(function () {
+            //     var el = $(this);
+            //     console.log(el, 'ellll')
+            //     name = el.text();
+            //     fighter.name = name;
+            //     console.log('mmmmmmmmmmmmmm', name)
+            // });
+            $('.field-name-nickname').filter(function () {
+                let el = $(this);
+                let nickname = el.text();
+                console.log(nickname)
+                fighter.nickname = nickname;
+
             });
+
             callback(fighter);
         }
     })

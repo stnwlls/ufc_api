@@ -1,9 +1,9 @@
 
 
-const ufc = require('./index');
-let url = "http://www.ufc.com/fighter/Jon-Jones"
+const ufc = require('./code');
+let url = "https://www.ufc.com/athlete/sean-omalley"
 ufc.getFighter(url, function (data) {
     console.log(data);
 });
 
-//console.log(`Index: ${ufc.getFighter}`)
+// console.log(`Index: ${ufc.getFighter}`)

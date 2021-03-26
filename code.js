@@ -19,9 +19,9 @@ module.exports.getFighter = function (url, callback) {
             let fighter = {
                 name: "",
                 nickname: "",
-                fullname: "",
+                //fullname: "",
                 hometown: "",
-                location: "",
+                trains_out_of: "",
                 age: "",
                 height: "",
                 height_cm: "",
@@ -63,6 +63,32 @@ module.exports.getFighter = function (url, callback) {
                 let nickname = em.trim();
                 fighter.nickname = nickname;
 
+            });
+
+            // Hometown
+            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container--no-spacing-vertical-bottom > div > div > div > div.c-bio__info > div.c-bio__info-details > div:nth-child(2) > div > div.c-bio__text').filter(function () {
+                let el = $(this);
+                let em = el.text();
+                let hometown = em.trim();
+                fighter.hometown = hometown;
+
+            });
+
+            // Trains Out Of
+            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container--no-spacing-vertical-bottom > div > div > div > div.c-bio__info > div.c-bio__info-details > div.c-bio__row--2col > div > div.c-bio__text').filter(function () {
+                let el = $(this);
+                let em = el.text();
+                let trains_out_of = em.trim();
+                fighter.trains_out_of = trains_out_of;
+
+            });
+
+            // Age
+            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container--no-spacing-vertical-bottom > div > div > div > div.c-bio__info > div.c-bio__info-details > div:nth-child(4) > div:nth-child(1) > div.c-bio__text > div').filter(function () {
+                let el = $(this);
+                let em = el.text();
+                let age = em.trim();
+                fighter.age = age;
             });
 
             callback(fighter);

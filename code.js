@@ -12,27 +12,24 @@ module.exports.getFighter = function (url, callback) {
 
     request(url, function (error, response, html) {
         if (!error && response.statusCode == 200) {
-            //console.log('ufl', url)
             let $ = cheerio.load(html);
-            //console.log('dollar', $)
-            console.log('yes sir')
             let fighter = {
                 name: "",
                 nickname: "",
+                division_and_record: "",
                 //fullname: "",
                 hometown: "",
                 trains_out_of: "",
                 age: "",
                 college: "",
                 degree: "",
-                summary: [],
                 height: "",
                 //height_cm: "",
                 weight: "",
                 //weight_kg: "",
                 reach: "",
                 leg_reach: "",
-                record: "",
+                //record: "",
                 fight_win_streak: "",
                 wins_by_knockout: "",
                 title_defenses: "",
@@ -77,7 +74,7 @@ module.exports.getFighter = function (url, callback) {
                 },
                 fights: []
             };
-            // NAME
+            // Name
             $('h1').filter(function () {
                 let el = $(this);
                 let em = el.text();
@@ -94,6 +91,17 @@ module.exports.getFighter = function (url, callback) {
                 fighter.nickname = nickname;
 
             });
+
+            // Divison and Record - not working
+            $('#block-mainpagecontent > div > div > div.l-main__hero > div.c-hero--full > div.c-hero--full__container > div.c-hero--full__content.aos-init.aos-animate > div.c-hero__header > div.c-hero__headline-suffix.tz-change-inner').filter(function () {
+                let el = $(this);
+                // console.log(el, 'eelelelelele')
+                let em = el.text();
+                // let div_rec = em.trim();
+                fighter.division_and_record = em;
+
+            });
+
 
             // Hometown
             $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container--no-spacing-vertical-bottom > div > div > div > div.c-bio__info > div.c-bio__info-details > div:nth-child(2) > div > div.c-bio__text').filter(function () {
@@ -152,6 +160,14 @@ module.exports.getFighter = function (url, callback) {
                 let em = el.text();
                 let leg_reach = em.trim();
                 fighter.leg_reach = leg_reach;
+            });
+
+            // Win Streak
+            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container.stats-records__container > div > section > ul:nth-child(1) > li:nth-child(1) > div > div > div.c-record__promoted-figure').filter(function () {
+                let el = $(this);
+                let em = el.text();
+                let win_streak = em.trim();
+                fighter.fight_win_streak = win_streak;
             });
 
 

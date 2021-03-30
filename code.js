@@ -163,12 +163,21 @@ module.exports.getFighter = function (url, callback) {
             });
 
             // Win Streak
-            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container.stats-records__container > div > section > ul:nth-child(1) > li:nth-child(1) > div > div > div.c-record__promoted-figure').filter(function () {
+            // $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container.stats-records__container > div > section > ul:nth-child(1) > li:nth-child(1) > div > div > div.c-record__promoted-figure').filter(function () {
+            //     let el = $(this);
+            //     let em = el.text();
+            //     let win_streak = em.trim();
+            //     fighter.fight_win_streak = win_streak;
+            // });
+
+            //Finding Stats Container and Assigning values
+            $('#block-mainpagecontent > div > div > div.l-main__content > div.l-container.stats-records__container > div').filter(function () {
                 let el = $(this);
-                let em = el.text();
-                let win_streak = em.trim();
-                fighter.fight_win_streak = win_streak;
-            });
+                let em = el.find('c-record__promoted-figure');
+                let fight_win_streak = em.text();
+                console.log('LELELELELEELEL', em)
+                fighter.fight_win_streak = fight_win_streak;
+            })
 
 
             callback(fighter);
